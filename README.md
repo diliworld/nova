@@ -13,6 +13,7 @@
 9. vue
 10. react
 11. https://lexical.dev/
+12. https://d3js.org/
 
 
 
