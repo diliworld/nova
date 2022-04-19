@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="script.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">{{ message }}</div>
+
+    <script type="module">
+      import { createApp } from 'vue';
+      import rootComponent from './components/rootComponent.js';
+      import userComponent from './components/userComponent.js';
+
+      let app = createApp(rootComponent);
+      app.config.errorHandler = (err) => {
+        console.log('err', err);
+      };
+      app.component('userComponent', userComponent);
+      app.provide('globalMessage', 'globalMessage');
+      app.directive('demo', (el, binding) => {
+        console.log(binding);
+        el.style.backgroundColor = binding.value.color;
+      });
+      app.mount('#app');
+    </script>
+  </body>
+</html>
