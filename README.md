@@ -8,6 +8,8 @@
 4. echart,
 5. https://vue-responsive-dash.netlify.app/
 6. Laravel Nova
+7. geojson
+8. https://observablehq.com/
 
 
 
