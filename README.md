@@ -10,6 +10,9 @@
 6. Laravel Nova
 7. geojson
 8. https://observablehq.com/
+9. vue
+10. react
+11. https://lexical.dev/
 
 
 
