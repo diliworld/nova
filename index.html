@@ -6,32 +6,53 @@
     <script type="importmap">
       {
         "imports": {
-          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
-          "lexical":"https://unpkg.com/browse/lexical@0.2.2/Lexical.prod.js"
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
         }
       }
     </script>
 
   </head>
   <body>
-    <div id="app">{{ message }}</div>
-    
     <script type="module">
       import { createApp } from 'vue';
+      
       import rootComponent from './components/rootComponent.js';
       import userComponent from './components/userComponent.js';
 
+      window.createNovaApp = (config = {}) =>{
+        return new Nova(config);
+      }
+
+      class Nova {
+
+        construct(config){
+          this.bootingCallbacks = [];
+          this.bootedCallbacks = [];
+          this.appConfig = config;
+          this.useShortcuts = true;
+         
+        }
+
+      }
+
+      //
       let app = createApp(rootComponent);
+
       app.config.errorHandler = (err) => {
         console.log('err', err);
       };
+
       app.component('userComponent', userComponent);
+
       app.provide('globalMessage', 'globalMessage');
+
       app.directive('demo', (el, binding) => {
         console.log(binding);
         el.style.backgroundColor = binding.value.color;
       });
+
       app.mount('#app');
+
     </script>
 
     <!-- Mermaid  -->
