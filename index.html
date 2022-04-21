@@ -35,6 +35,13 @@
 
       }
 
+      let fn = "name";
+
+      let name = import(`./${fn}.js`).then(function(a){
+        console.log(a.name)
+      })
+      console.log(333,name)
+
       //
       let app = createApp(rootComponent);
 
