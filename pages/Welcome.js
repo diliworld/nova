@@ -3,6 +3,6 @@ export default {
     return { count: 0 };
   },
   template: `<div id="app" >
-  Welcome
+  Welcome to Application
 </div>`,
 };
