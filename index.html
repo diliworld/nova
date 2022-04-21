@@ -13,12 +13,12 @@
 
   </head>
   <body>
+    <div id="app"></div>
     <script type="module">
     
       import { createApp } from 'vue';
       
       import rootComponent from './components/rootComponent.js';
-      import userComponent from './components/userComponent.js';
 
       window.createNovaApp = (config = {}) =>{
         return new Nova(config);
@@ -33,7 +33,7 @@
           this.useShortcuts = true;
          
           this.pages = {
-            'Nova.Welcome' : import(`./Welcome.js`)
+            'Nova.Welcome' : 'Welcome'
           }
         }
 
@@ -42,31 +42,28 @@
         }
 
       }
+      
+      import(`./pages/Welcome.js`).then(function(page){
+        let app = createApp(page.default);
+        app.config.errorHandler = (err) => {
+          console.log('err', err);
+        };
 
-      //
-      let app = createApp(rootComponent);
+        app.provide('globalMessage', 'globalMessage');
 
-      app.config.errorHandler = (err) => {
-        console.log('err', err);
-      };
+        app.directive('demo', (el, binding) => {
+          console.log(binding);
+          el.style.backgroundColor = binding.value.color;
+        });
 
-      app.component('userComponent', userComponent);
+        app.mount('#app');
+      })
+        
 
-      app.provide('globalMessage', 'globalMessage');
 
-      app.directive('demo', (el, binding) => {
-        console.log(binding);
-        el.style.backgroundColor = binding.value.color;
-      });
-
-      app.mount('#app');
 
     </script>
 
-    <!-- Mermaid  -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-      //mermaid.initialize({ startOnLoad: true });
-    </script>
+ 
   </body>
 </html>
