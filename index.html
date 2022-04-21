@@ -14,6 +14,7 @@
   </head>
   <body>
     <script type="module">
+    
       import { createApp } from 'vue';
       
       import rootComponent from './components/rootComponent.js';
@@ -31,16 +32,16 @@
           this.appConfig = config;
           this.useShortcuts = true;
          
+          this.pages = {
+            'Nova.Welcome' : import(`./Welcome.js`)
+          }
+        }
+
+        booting(callback) {
+
         }
 
       }
-
-      let fn = "name";
-
-      let name = import(`./${fn}.js`).then(function(a){
-        console.log(a.name)
-      })
-      console.log(333,name)
 
       //
       let app = createApp(rootComponent);
@@ -65,7 +66,7 @@
     <!-- Mermaid  -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
-      mermaid.initialize({ startOnLoad: true });
+      //mermaid.initialize({ startOnLoad: true });
     </script>
   </body>
 </html>
