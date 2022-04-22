@@ -1,10 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <script type="importmap">
       {
         "imports": {
@@ -12,40 +12,35 @@
         }
       }
     </script>
-
   </head>
   <body>
     <div id="app"></div>
+    <div class="h"></div>
     <script type="module">
-    
       import { createApp } from 'vue';
-      
+      import * as d3 from 'https://cdn.skypack.dev/d3@7';
       import rootComponent from './components/rootComponent.js';
 
-      window.createNovaApp = (config = {}) =>{
+      window.createNovaApp = (config = {}) => {
         return new Nova(config);
-      }
+      };
 
       class Nova {
-
-        construct(config){
+        construct(config) {
           this.bootingCallbacks = [];
           this.bootedCallbacks = [];
           this.appConfig = config;
           this.useShortcuts = true;
-         
+
           this.pages = {
-            'Nova.Welcome' : 'Welcome'
-          }
+            'Nova.Welcome': 'Welcome',
+          };
         }
 
-        booting(callback) {
-
-        }
-
+        booting(callback) {}
       }
-      
-      import(`./pages/Welcome.js`).then(function(page){
+
+      import(`./pages/Welcome.js`).then(function (page) {
         let app = createApp(page.default);
         app.config.errorHandler = (err) => {
           console.log('err', err);
@@ -59,13 +54,7 @@
         });
 
         app.mount('#app');
-      })
-        
-
-
-
+      });
     </script>
-
- 
   </body>
 </html>
